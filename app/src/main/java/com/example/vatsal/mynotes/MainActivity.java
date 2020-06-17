@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,9 +12,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -40,8 +43,28 @@ static     ArrayAdapter arrayAdapter;
             notes=new ArrayList(set);
         }
 
-       arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,notes);
+       arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,notes){
+           @Override
+           public View getView(int position, View convertView, ViewGroup parent){
+               // Get the Item from ListView
+               View view = super.getView(position, convertView, parent);
+
+               // Initialize a TextView for ListView each Item
+               TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+               // Set the text color of TextView (ListView Item)
+               tv.setTextColor(Color.WHITE);
+
+               // Generate ListView Item using TextView
+               return view;
+           }
+
+
+
+
+       };
         listView.setAdapter(arrayAdapter);
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

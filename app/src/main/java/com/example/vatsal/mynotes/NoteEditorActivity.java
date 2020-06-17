@@ -38,6 +38,7 @@ public class NoteEditorActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                MainActivity.notes.set(noteId,String.valueOf(charSequence));
+
                MainActivity.arrayAdapter.notifyDataSetChanged();
 
                 SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("com.example.vatsal.mynotes", Context.MODE_PRIVATE);
